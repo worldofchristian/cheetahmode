@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 const PaceCalculator = () => {
+  // state
   const [paceValue, setPaceValue] = useState('');
   const [selectedMetric, setSelectedMetric] = useState('minutesPerKm');
   const [convertedPaces, setConvertedPaces] = useState({
@@ -30,33 +31,33 @@ const PaceCalculator = () => {
     // Check if paceNumber is not a valid number
     if (isNaN(paceNumber)) {
       return {
-        minutesPerKm: '',
-        minutesPerMile: '',
-        kmPerHour: '',
-        mph: '',
-        minutePerMile: '',
-        minutePerKm: '',
+        minutesPerKm: null,
+        minutesPerMile: null,
       };
     }
   
-    const minutesPerKm = selectedMetric === 'minutesPerKm' ? paceNumber : paceNumber / kmPerMile;
-    const minutesPerMile = selectedMetric === 'minutesPerMile' ? paceNumber : paceNumber * kmPerMile;
+    let minutesPerKm = null;
+    let minutesPerMile = null;
+  
+    if (selectedMetric === 'minutesPerKm') {
+      minutesPerKm = paceNumber;
+      minutesPerMile = paceNumber * kmPerMile;
+    } else if (selectedMetric === 'minutesPerMile') {
+      minutesPerMile = paceNumber;
+      minutesPerKm = paceNumber / kmPerMile;
+    }
+  
     const kmPerHour = 60 / minutesPerKm;
-    const mph = kmPerHour / kmPerMile;
-    const minutePerMile = (1 / (minutesPerMile / 60)).toFixed(1);
-    const minutePerKm = (1 / (minutesPerKm / 60)).toFixed(1);
+    const mph = 60 / minutesPerMile;
   
     return {
       minutesPerKm: minutesPerKm.toFixed(1),
       minutesPerMile: minutesPerMile.toFixed(1),
       kmPerHour: kmPerHour.toFixed(1),
       mph: mph.toFixed(1),
-      minutePerMile,
-      minutePerKm,
     };
-  };
+  };  
   
-
   const handleCalculate = () => {
     const convertedPaces = calculatePaces(paceValue, selectedMetric);
     setConvertedPaces(convertedPaces);
@@ -92,12 +93,6 @@ const PaceCalculator = () => {
                         <option
                         value="minutesPerMile"
                         >minutes/mile</option>
-                        <option
-                        value="kmPerHour"
-                        >km/h</option>
-                        <option
-                        value="mph"
-                        >mph</option>
                     </select>
 
                     <button 
@@ -144,7 +139,7 @@ const PaceCalculator = () => {
                     className="stat">
                         <div 
                         className="stat-title"
-                        >km/h</div>
+                        >mph</div>
                         <div 
                         className="stat-value"
                         >{convertedPaces.mph}</div>
