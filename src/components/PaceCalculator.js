@@ -116,6 +116,7 @@ const PaceCalculator = () => {
     }
 
     setConvertedTimes(newConvertedTimes);
+    window.scrollTo(0, 0);
   };
 
   return (
