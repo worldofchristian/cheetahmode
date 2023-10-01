@@ -21,11 +21,11 @@ const RaceTimes = ({ raceTimes }) => {
             className='my-8' 
             key={race}>
                 <p
-                className='text-5xl font-bold'
+                className='text-3xl font-bold'
                 >{time}</p>
 
                 <p
-                className='text-base tracking-wide text-slate-200 mb-2'
+                className='text-sm tracking-wide text-slate-200 mb-2'
                 >{race}</p>
             </div>
             ))}

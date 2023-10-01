@@ -137,44 +137,44 @@ const PaceCalculator = () => {
             <div 
             className="flex-col p-4">
               <h2 
-              className="text-5xl font-bold mt-2"
+              className="text-3xl font-bold mt-2"
               >{convertedPaces.minutesPerKm}</h2>
 
               <p 
-              className="text-base tracking-wide text-slate-200"
+              className="text-sm tracking-wide text-slate-200"
               >minutes/km</p>
             </div>
 
             <div 
             className="flex-col p-4">
               <h2 
-              className="text-5xl font-bold mt-2"
+              className="text-3xl font-bold mt-2"
               >{convertedPaces.minutesPerMile}</h2>
 
               <p 
-              className="text-base tracking-wide text-slate-200"
+              className="text-sm tracking-wide text-slate-200"
               >minutes/mile</p>
             </div>
 
             <div 
             className="flex-col p-4">
               <h2 
-              className="text-5xl font-bold mt-2"
+              className="text-3xl font-bold mt-2"
               >{convertedPaces.kmPerHour}</h2>
 
               <p 
-              className="text-base tracking-wide text-slate-200"
+              className="text-sm tracking-wide text-slate-200"
               >kilometers/hour</p>
             </div>
 
             <div 
             className="flex-col p-4">
               <h2 
-              className="text-5xl font-bold mt-2"
+              className="text-3xl font-bold mt-2"
               >{convertedPaces.mph}</h2>
 
               <p 
-              className="text-base tracking-wide text-slate-200"
+              className="text-sm tracking-wide text-slate-200"
               >miles/hour</p>
               </div>
             </div>
