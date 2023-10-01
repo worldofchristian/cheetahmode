@@ -7,7 +7,7 @@ const RaceTimes = ({ raceTimes }) => {
   return (
     <div>
         <button
-        className={`btn ${isRaceTimesOpen ? 'btn-primary' : 'btn-neutral'} gap-2 my-8`}
+        className={`btn ${isRaceTimesOpen ? 'btn-primary' : 'btn-neutral'} gap-2 mt-8`}
         onClick={() => setIsRaceTimesOpen(!isRaceTimesOpen)}
         >Race Times
 

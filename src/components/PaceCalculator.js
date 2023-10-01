@@ -130,7 +130,7 @@ const PaceCalculator = () => {
           {paceValue ? (
           <>
           <div
-          className='flex flex-row mt-20'>
+          className='flex flex-row mt-12'>
             <div
             className='flex-col'>
               <div 
