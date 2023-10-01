@@ -31,7 +31,7 @@ const RaceTimes = ({ raceTimes }) => {
             ))}
 
             <div
-            className='max-w-sm'>
+            className='max-w-xs'>
                 <FaInfoCircle 
                 className='mb-2'
                 />
