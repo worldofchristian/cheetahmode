@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+.main-content {
+  padding-bottom: 300px; /* adjust to your fixed-bottom div's height */
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',

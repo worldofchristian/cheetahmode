@@ -1,8 +1,22 @@
 import React, { useState } from 'react';
+import Lottie from 'lottie-react';
+import RaceTimes from './RaceTimes';
+import PaceInput from './PaceInput';
+import KAC7BGcQLN from '../lottie/KAC7BGcQLN.json';
+
+const defaultOptions = {
+  loop: true,
+  autoplay: true,
+  animationData: KAC7BGcQLN,
+  rendererSettings: {
+    preserveAspectRatio: 'xMidYMid slice'
+  }
+};
 
 const PaceCalculator = () => {
   // state
   const [paceValue, setPaceValue] = useState('');
+  const [tempPaceValue, setTempPaceValue] = useState('');
   const [selectedMetric, setSelectedMetric] = useState('minutesPerKm');
   const [convertedPaces, setConvertedPaces] = useState({
     minutesPerKm: '',
@@ -12,11 +26,34 @@ const PaceCalculator = () => {
     minutePerMile: '',
     minutePerKm: '',
   });
+  const [convertedTimes, setConvertedTimes] = useState({
+    fivek: '',
+    tenk: '',
+    halfmarathon: '',
+    marathon: '',
+    fiftyk: '',
+    fiftymile: '',
+    hundredk: '',
+    hundredmile: ''
+  })
 
-  // handler for pace value change
+  // convert minutes to hour:minute format
+  const formatTime = (timeInMinutes) => {
+    const hours = Math.floor(timeInMinutes / 60);
+    const minutes = Math.round(timeInMinutes % 60);
+    return `${hours}:${minutes < 10 ? '0' : ''}${minutes}`;
+  };  
+
+  // sets the temporary pace value 
   const handlePaceValueChange = (event) => {
-    setPaceValue(event.target.value);
-  };
+    setTempPaceValue(event.target.value);
+  };  
+
+  // handler for convert btn click
+  const handleConvertClick = () => {
+    setPaceValue(tempPaceValue); // update state to make it consistent, but use tempPaceValue for calculations right away
+    handleCalculate(tempPaceValue); // pass the temporary value directly
+  }; 
 
   // handler for metric change
   const handleMetricChange = (event) => {
@@ -58,95 +95,120 @@ const PaceCalculator = () => {
     };
   };  
   
-  const handleCalculate = () => {
-    const convertedPaces = calculatePaces(paceValue, selectedMetric);
+  const handleCalculate = (valueToCalculate) => {
+    const convertedPaces = calculatePaces(valueToCalculate, selectedMetric); // use the passed-in value
     setConvertedPaces(convertedPaces);
+
+    const minutesPerKm = parseFloat(convertedPaces.minutesPerKm);
+
+    // Common race distances in Km
+    const raceDistances = {
+    '5k': 5,
+    '10k': 10,
+    'half marathon': 21.1,
+    'marathon': 42.195,
+    '50k': 50,
+    '50 mile': 80.4672, // converted from miles to km
+    '100k': 100,
+    '100 mile': 160.934 // converted from miles to km
+    };
+
+    let newConvertedTimes = {};
+
+    for (const [race, distance] of Object.entries(raceDistances)) {
+      newConvertedTimes[race] = formatTime(minutesPerKm * distance);
+    }
+
+    setConvertedTimes(newConvertedTimes);
   };
 
   return (
     <div
-    className='flex items-center justify-center p-4 max-w-xl w-full rounded-xl shadow-xl'>
+    className='main-content flex items-center justify-center p-4 max-w-xl w-full'>
+      <div
+      className='flex-col'>
         <div
-        className='flex-col'>
+        className='flex flex-col items-center justify-center mt-2'>
 
-            <input 
-            type="number" placeholder="Enter pace" 
-            className="input input-bordered w-full max-w-xs mt-6" 
-            id="paceValue" 
-            value={paceValue} 
-            onChange={handlePaceValueChange} />
+          {paceValue ? (
+          <>
+          <div
+          className='flex-col'>
+            <div 
+            className="flex-col p-4">
+              <h2 
+              className="text-5xl font-bold mt-2"
+              >{convertedPaces.minutesPerKm}</h2>
 
-            <div
-            className='items-center justify-center'>
-                <div
-                className='flex-col'>
-                    <select 
-                    className="select select-bordered w-full max-w-xs mt-6"
-                    id="metric" 
-                    value={selectedMetric}
-                    onChange={handleMetricChange}>
-                        <option disabled selected
-                        >Choose a metric</option>
-                        <option
-                        value="minutesPerKm"
-                        >minutes/km</option>
-                        <option
-                        value="minutesPerMile"
-                        >minutes/mile</option>
-                    </select>
+              <p 
+              className="text-base tracking-wide text-slate-200"
+              >minutes/km</p>
+            </div>
 
-                    <button 
-                    className='btn btn-primary mt-6 w-full'
-                    onClick={handleCalculate}
-                    >Convert</button>
-                </div>
+            <div 
+            className="flex-col p-4">
+              <h2 
+              className="text-5xl font-bold mt-2"
+              >{convertedPaces.minutesPerMile}</h2>
+
+              <p 
+              className="text-base tracking-wide text-slate-200"
+              >minutes/mile</p>
+            </div>
+
+            <div 
+            className="flex-col p-4">
+              <h2 
+              className="text-5xl font-bold mt-2"
+              >{convertedPaces.kmPerHour}</h2>
+
+              <p 
+              className="text-base tracking-wide text-slate-200"
+              >kilometers/hour</p>
+            </div>
+
+            <div 
+            className="flex-col p-4">
+              <h2 
+              className="text-5xl font-bold mt-2"
+              >{convertedPaces.mph}</h2>
+
+              <p 
+              className="text-base tracking-wide text-slate-200"
+              >miles/hour</p>
+              </div>
             </div>
 
             <div
-            className='flex items-center justify-center'>
-                <div 
-                className="stats stats-vertical shadow my-6">
-                    <div 
-                    className="stat">
-                        <div 
-                        className="stat-title"
-                        >minutes/km</div>
-                        <div 
-                        className="stat-value"
-                        >{convertedPaces.minutesPerKm}</div>
-                    </div>
-                    
-                    <div 
-                    className="stat">
-                        <div 
-                        className="stat-title"
-                        >minutes/mile</div>
-                        <div 
-                        className="stat-value">{convertedPaces.minutesPerMile}</div>
-                    </div>
-                    
-                    <div 
-                    className="stat">
-                        <div 
-                        className="stat-title"
-                        >km/h</div>
-                        <div 
-                        className="stat-value"
-                        >{convertedPaces.kmPerHour}</div>
-                    </div>
-
-                    <div 
-                    className="stat">
-                        <div 
-                        className="stat-title"
-                        >mph</div>
-                        <div 
-                        className="stat-value"
-                        >{convertedPaces.mph}</div>
-                    </div>
-                </div>
+            className='flex items-center justify-center mt-2'>
+              <RaceTimes 
+              raceTimes={convertedTimes} 
+              />
             </div>
+            </>
+          ) : (
+            <div
+            className='fixed bottom-80'>
+              <div
+              className='max-w-xs'>
+                <Lottie 
+                animationData={KAC7BGcQLN}
+                options={defaultOptions}
+                height={10}
+                width={10}
+                />
+              </div>
+            </div>
+          )}
 
+            <PaceInput 
+            paceValue={tempPaceValue}
+            handlePaceValueChange={handlePaceValueChange}
+            selectedMetric={selectedMetric}
+            handleMetricChange={handleMetricChange}
+            handleCalculate={handleConvertClick}
+            />
+          </div>
         </div>
     </div>
   );
