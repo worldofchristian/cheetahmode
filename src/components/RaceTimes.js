@@ -42,7 +42,7 @@ const RaceTimes = ({ raceTimes }) => {
 
                 <div
                 className='flex flex-row'>
-                    <FaAngleRight className='mt-' />
+                    <FaAngleRight className='mt-1' />
                     
                     <p
                     className='text-base tracking-wide text-slate-200 mb-2 underline cursor-pointer font-medium'
