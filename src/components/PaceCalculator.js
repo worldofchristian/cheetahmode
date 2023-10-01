@@ -107,10 +107,6 @@ const PaceCalculator = () => {
     '10k': 10,
     'half marathon': 21.1,
     'marathon': 42.195,
-    '50k': 50,
-    '50 mile': 80.4672, // converted from miles to km
-    '100k': 100,
-    '100 mile': 160.934 // converted from miles to km
     };
 
     let newConvertedTimes = {};
@@ -133,49 +129,55 @@ const PaceCalculator = () => {
           {paceValue ? (
           <>
           <div
-          className='flex-col'>
-            <div 
-            className="flex-col p-4">
-              <h2 
-              className="text-3xl font-bold mt-2"
-              >{convertedPaces.minutesPerKm}</h2>
+          className='flex flex-row mt-20'>
+            <div
+            className='flex-col'>
+              <div 
+              className="flex-col p-4">
+                <h2 
+                className="text-4xl font-bold mt-2"
+                >{convertedPaces.minutesPerKm}</h2>
 
-              <p 
-              className="text-sm tracking-wide text-slate-200"
-              >minutes/km</p>
+                <p 
+                className="text-base tracking-wide text-slate-200"
+                >minutes/km</p>
+              </div>
+
+              <div 
+              className="flex-col p-4">
+                <h2 
+                className="text-4xl font-bold mt-2"
+                >{convertedPaces.minutesPerMile}</h2>
+
+                <p 
+                className="text-base tracking-wide text-slate-200"
+                >minutes/mile</p>
+              </div>
             </div>
 
-            <div 
-            className="flex-col p-4">
-              <h2 
-              className="text-3xl font-bold mt-2"
-              >{convertedPaces.minutesPerMile}</h2>
+            <div
+            className='flex-col'>
+              <div 
+              className="flex-col p-4">
+                <h2 
+                className="text-4xl font-bold mt-2"
+                >{convertedPaces.kmPerHour}</h2>
 
-              <p 
-              className="text-sm tracking-wide text-slate-200"
-              >minutes/mile</p>
-            </div>
+                <p 
+                className="text-base tracking-wide text-slate-200"
+                >kilometers/hour</p>
+              </div>
 
-            <div 
-            className="flex-col p-4">
-              <h2 
-              className="text-3xl font-bold mt-2"
-              >{convertedPaces.kmPerHour}</h2>
+              <div 
+              className="flex-col p-4">
+                <h2 
+                className="text-4xl font-bold mt-2"
+                >{convertedPaces.mph}</h2>
 
-              <p 
-              className="text-sm tracking-wide text-slate-200"
-              >kilometers/hour</p>
-            </div>
-
-            <div 
-            className="flex-col p-4">
-              <h2 
-              className="text-3xl font-bold mt-2"
-              >{convertedPaces.mph}</h2>
-
-              <p 
-              className="text-sm tracking-wide text-slate-200"
-              >miles/hour</p>
+                <p 
+                className="text-base tracking-wide text-slate-200"
+                >miles/hour</p>
+                </div>
               </div>
             </div>
 
@@ -188,9 +190,9 @@ const PaceCalculator = () => {
             </>
           ) : (
             <div
-            className='fixed bottom-80'>
+            className='flex items-center justify-center mt-40'>
               <div
-              className='max-w-xs'>
+              className='max-w-[45%]'>
                 <Lottie 
                 animationData={KAC7BGcQLN}
                 options={defaultOptions}
