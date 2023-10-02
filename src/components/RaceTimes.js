@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FaAngleRight, FaAngleDown, FaInfoCircle } from 'react-icons/fa';
+import { FaAngleRight, FaAngleDown } from 'react-icons/fa';
 
 const RaceTimes = ({ raceTimes }) => {
   const [isRaceTimesOpen, setIsRaceTimesOpen] = useState(false);
