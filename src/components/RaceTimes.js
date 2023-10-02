@@ -29,26 +29,6 @@ const RaceTimes = ({ raceTimes }) => {
                 >{race}</p>
             </div>
             ))}
-
-            <div
-            className='max-w-xs'>
-                <FaInfoCircle 
-                className='mb-2'
-                />
-
-                <p
-                className='text-base tracking-wide text-slate-200 mb-2'
-                >Carb gels can reduce fatigue on long runs by helping maintain glycogen levels</p>
-
-                <div
-                className='flex flex-row'>
-                    <FaAngleRight className='mt-1' />
-                    
-                    <p
-                    className='text-base tracking-wide text-slate-200 mb-2 underline cursor-pointer font-medium'
-                    >See more</p>
-                </div>
-            </div>
         </div>
       )}
     </div>
