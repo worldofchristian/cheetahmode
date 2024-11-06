@@ -4,7 +4,7 @@ import PaceInput from './PaceInput';
 
 const PaceCalculator = () => {
   // state
-  const [paceValue, setPaceValue] = useState('');
+  //const [paceValue, setPaceValue] = useState('');
   const [tempPaceValue, setTempPaceValue] = useState('');
   const [selectedMetric, setSelectedMetric] = useState('minutesPerKm');
   const [convertedPaces, setConvertedPaces] = useState({
