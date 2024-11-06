@@ -4,7 +4,7 @@ import PaceInput from './PaceInput';
 
 const PaceCalculator = () => {
   // state
-  //const [paceValue, setPaceValue] = useState('');
+  const [paceValue, setPaceValue] = useState('');
   const [tempPaceValue, setTempPaceValue] = useState('');
   const [selectedMetric, setSelectedMetric] = useState('minutesPerKm');
   const [convertedPaces, setConvertedPaces] = useState({
@@ -38,13 +38,11 @@ const PaceCalculator = () => {
     setTempPaceValue(event.target.value);
   };  
 
-  {/*
   // handler for convert btn click
   const handleConvertClick = () => {
     setPaceValue(tempPaceValue); // update state to make it consistent, but use tempPaceValue for calculations right away
     handleCalculate(tempPaceValue); // pass the temporary value directly
   }; 
-  */}
 
   // handler for metric change
   const handleMetricChange = (event) => {
@@ -111,12 +109,10 @@ const PaceCalculator = () => {
   };
 
   return (
-    <div
-    className='main-content flex items-center justify-center p-4 max-w-xl w-full'>
-      <div
-      className='flex-col'>
-        <div
-        className='flex flex-col items-center justify-center mt-2'>
+    <div className='main-content flex items-center justify-center p-4 max-w-xl w-full'>
+      <div className='flex-col'>
+        <div className='flex flex-col items-center justify-center mt-2'>
+        <div className='hidden'>{paceValue}</div>
 
           <div className='flex flex-row mt-12'>
             <div className='flex-col'>
