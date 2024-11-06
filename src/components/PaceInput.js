@@ -8,6 +8,7 @@ const PaceInput = ({ paceValue, handlePaceValueChange, selectedMetric, handleMet
         className='flex items-center justify-center my-6'>
             <div
             className='flex-col'>
+                <label htmlFor="pace-value">Pace:</label>
                 <input 
                 type="number" 
                 placeholder="Enter pace"
@@ -15,17 +16,20 @@ const PaceInput = ({ paceValue, handlePaceValueChange, selectedMetric, handleMet
                 id="paceValue" 
                 value={paceValue}
                 onChange={handlePaceValueChange} 
+                aria-describedby="pace-help"
                 />
 
                 <div 
                 className='items-center justify-center'>
                     <div 
                     className='flex-col'>
+                        <label htmlFor="metric-select">Select Metric:</label>
                         <select 
                         className="select select-bordered w-full max-w-xs shadow-xl mt-6"
                         id="metric"
                         value={selectedMetric}
                         onChange={handleMetricChange}
+                        aria-label="Pace Metric Selection"
                         >
                             <option 
                             disabled
