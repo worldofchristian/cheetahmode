@@ -1,17 +1,6 @@
 import React, { useState } from 'react';
-import Lottie from 'lottie-react';
 import RaceTimes from './RaceTimes';
 import PaceInput from './PaceInput';
-import KAC7BGcQLN from '../lottie/KAC7BGcQLN.json';
-
-const defaultOptions = {
-  loop: true,
-  autoplay: true,
-  animationData: KAC7BGcQLN,
-  rendererSettings: {
-    preserveAspectRatio: 'xMidYMid slice'
-  }
-};
 
 const PaceCalculator = () => {
   // state
@@ -127,82 +116,49 @@ const PaceCalculator = () => {
         <div
         className='flex flex-col items-center justify-center mt-2'>
 
-          {paceValue ? (
-          <>
-          <div
-          className='flex flex-row mt-12'>
-            <div
-            className='flex-col'>
-              <div 
-              className="flex-col p-4">
-                <h2 
-                className="text-4xl font-bold mt-2"
+          <div className='flex flex-row mt-12'>
+            <div className='flex-col'>
+              <div className="flex-col p-4">
+                <h2 className="text-4xl font-bold mt-2"
                 >{convertedPaces.minutesPerKm}</h2>
 
-                <p 
-                className="text-base tracking-wide text-slate-200"
+                <p className="text-base tracking-wide text-slate-200"
                 >minutes/km</p>
               </div>
 
-              <div 
-              className="flex-col p-4">
-                <h2 
-                className="text-4xl font-bold mt-2"
+              <div className="flex-col p-4">
+                <h2 className="text-4xl font-bold mt-2"
                 >{convertedPaces.minutesPerMile}</h2>
 
-                <p 
-                className="text-base tracking-wide text-slate-200"
+                <p className="text-base tracking-wide text-slate-200"
                 >minutes/mile</p>
               </div>
             </div>
 
-            <div
-            className='flex-col'>
-              <div 
-              className="flex-col p-4">
-                <h2 
-                className="text-4xl font-bold mt-2"
+            <div className='flex-col'>
+              <div className="flex-col p-4">
+                <h2 className="text-4xl font-bold mt-2"
                 >{convertedPaces.kmPerHour}</h2>
 
-                <p 
-                className="text-base tracking-wide text-slate-200"
+                <p className="text-base tracking-wide text-slate-200"
                 >kilometers/hour</p>
               </div>
 
-              <div 
-              className="flex-col p-4">
-                <h2 
-                className="text-4xl font-bold mt-2"
+              <div className="flex-col p-4">
+                <h2 className="text-4xl font-bold mt-2"
                 >{convertedPaces.mph}</h2>
 
-                <p 
-                className="text-base tracking-wide text-slate-200"
+                <p className="text-base tracking-wide text-slate-200"
                 >miles/hour</p>
                 </div>
               </div>
             </div>
 
-            <div
-            className='flex items-center justify-center mt-2'>
+            <div className='flex items-center justify-center mt-2'>
               <RaceTimes 
               raceTimes={convertedTimes} 
               />
             </div>
-            </>
-          ) : (
-            <div
-            className='flex items-center justify-center mt-40'>
-              <div
-              className='max-w-[45%]'>
-                <Lottie 
-                animationData={KAC7BGcQLN}
-                options={defaultOptions}
-                height={10}
-                width={10}
-                />
-              </div>
-            </div>
-          )}
 
             <PaceInput 
             paceValue={tempPaceValue}
