@@ -38,11 +38,13 @@ const PaceCalculator = () => {
     setTempPaceValue(event.target.value);
   };  
 
+  {/*
   // handler for convert btn click
   const handleConvertClick = () => {
     setPaceValue(tempPaceValue); // update state to make it consistent, but use tempPaceValue for calculations right away
     handleCalculate(tempPaceValue); // pass the temporary value directly
   }; 
+  */}
 
   // handler for metric change
   const handleMetricChange = (event) => {
